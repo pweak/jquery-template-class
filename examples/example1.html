@@ -1,0 +1,78 @@
+<html>
+<head>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script type="text/javascript" src="jquery-template-class.js"></script>
+
+  <style type="text/css">
+    body { background-color: #7799CC; font-family: Verdanda, Arial, serif; }
+    .main { width: 1024px; margin: 5px auto 0px auto; padding: 2em; bottom:0px; background-color:#FFF; }
+    .title {margin: 0px auto 2em auto; padding: 10px 20px; background-color: #004ECB; color: #FFF; font-weigth: bold; }
+    .box { width: 500px; border: solid 3px #004ECB; padding: 1em; }
+    .box h3 { margin: 0px; padding: 0.5em; border: solid 3px #004ECB; color: #004ECB; }
+    .box table { width: 100%; }
+    .box table td { border: 0px; }
+    .box table tr:first-child td { border-bottom: solid 3px #004ECB; }
+    .box table tr.odd  { background-color: #FFF; }
+    .box table tr.even { background-color: #AAB7CB; }
+  </style>
+
+  <script type="text/javascript">
+    $( function() {
+      var myTpl = jQuery.createTemplate({
+        'base': '<h3>##MAIN_TITLE##</h3>' +
+                '<div>' +
+                '  <p>##INTRODUCING_TEXT##:</p>' +
+                '  <table cellspacing="0">' +
+                '    <tr><td>##LABEL_ID##</td><td>##LABEL_NAME##</td><td>##LABEL_IMG##</td></tr>' +
+                '    <!-- ##IMAGES_LIST## begin -->' +
+                '    <tr class="##TABLE_CLASS##">' +
+                '      <td>##ID##</td>' +
+                '      <td>##NAME##</td>' +
+                '      <td>##IMG##</td>' +
+                '    </tr>' +
+                '    <!-- ##IMAGES_LIST## end -->' +
+                '  </table>' +
+                '</div>',
+        'mainTitle':       { 'lang.en': 'My very first test for jQuery Template Class.',
+                             'lang.es': 'Mi primer ejemplo de jQuery Template Class.'},
+        'introducingText': { 'lang.en':'This is an auto-generated table' },
+        'labelId':         {'lang.en':'Id'},
+        'labelName':       {'lang.en':'Name'},
+        'labelImg':        {'lang.en':'Has image?'},
+
+        'tableClass':       'odd||even'
+        });
+/* */
+
+      var data = [
+        { 'id': '1', 'name': '&Aacute;lvaro Gonz&aacute;lez', 'img': 'SI' },
+        { 'id': '2', 'name': 'David Mu&ntilde;oz',            'img': 'NO' },
+        { 'id': '3', 'name': 'David Gonz&aacute;lez',         'img': 'SI' },
+        { 'id': '4', 'name': 'Iv&aacute;n Garrido',           'img': 'NO' },
+        ];
+
+      myTpl.imagesList = data;
+      myTpl.lang = 'es';
+
+      $('#myDiv').append( myTpl );
+    } );
+  </script>
+
+  <title>News</title>
+</head>
+<body>
+
+  <div class="main">
+    <div class="title">
+      jQuery Template class
+    </div>
+    <div class="content">
+      <p>Some text before...</p>
+      <div id="myDiv" class="box">
+
+      </div>
+      <p>And some text after...</p>
+    </div>
+  </div>
+</body>
+</html>
